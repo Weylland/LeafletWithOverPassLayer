@@ -5,14 +5,17 @@ attribution: [attr_osm, attr_overpass].join(', ')
 });
 
 var map = new L.Map('map').addLayer(osm).setView(new L.LatLng(50.6333, 3.0667), 13);
-
-var opl = new L.OverPassLayer({
-    query: '(node["amenity"="bicycle_rental"]({{bbox}}););out qt;',
-    minZoom: 11,
-    minZoomIndicatorOptions: {
-        position: 'topright',
-        minZoomMessage: 'Current zoom level: CURRENTZOOM - All data at level: MINZOOMLEVEL'
-    },
-
+var rental = L.icon({
+    iconUrl: 'src/img/rental.png',
+    iconSize: [20, 20], // size of the icon
+});
+var opl = new L.OverPassLayer({ 
+        query: '(node["amenity"="bicycle_rental"]({{bbox}}););out qt;',
+        minZoom: 11,
+        minZoomIndicatorOptions: {
+            position: 'topright',
+            minZoomMessage: 'Current zoom level: CURRENTZOOM - All data at level: MINZOOMLEVEL'
+        },
+        markerIcon: rental
 });
 map.addLayer(opl);
